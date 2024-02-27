@@ -1,0 +1,31 @@
+<html>
+...
+<head>
+    <link rel="stylesheet" href="{{url_for('static', filename="css/styles.css")}}">
+</head>
+<body>
+    <h1 class="text-center">Email Spam Classifier</h1>
+    <div>
+        <form method="post" action="/predict" class="mt-8">
+            <textarea rows="12" cols="60" name="content" placeholder="Enter your email here"
+                autocomplete="off" class="p-4 border rounded-lg w-full">{{ email }}</textarea>
+            <div class="mt-4">
+                <button type="submit" class="bg-blue-500 text-white py-2 px-4 rounded">
+                    Detect
+                </button>
+                <a href="/" class="ml-2 text-blue-500">Reset</a>
+            </div>
+        </form>
+        
+        <!-- Replace existing h2 styles with Tailwind classes -->
+        <div>
+            {% if prediction %}
+            {% if prediction == 1 %}
+            <h2 class="text-red-500">Spam</h2>
+            {% else %}
+            <h2 class="text-green-500">Not Spam</h2>
+            {% endif %}
+            {% endif %}
+        </div>
+</body>
+</html>
